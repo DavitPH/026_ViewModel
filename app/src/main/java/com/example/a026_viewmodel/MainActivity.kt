@@ -163,7 +163,8 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             fontSize = 16.sp
         )
     }
-    Spacer(modifier = Modifier.height(100.dp))
+
+    Spacer(modifier = Modifier.height(20.dp))
     TextHasil(
         namanya = cobaViewModel.namaUsr,
         teleponnya = cobaViewModel.noTlp,
@@ -249,6 +250,9 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, statusnya: 
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
         Text(text = "Jenis Kelamin : " + jenisnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(text = "Status : " + statusnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
     }
