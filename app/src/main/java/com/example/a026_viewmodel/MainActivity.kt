@@ -122,7 +122,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
-        label = { Text(text = "Nama Lengkap") },
+        label = { Text(text = "Username") },
         onValueChange = {
             textNama = it
         }
@@ -181,10 +181,12 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     
     Spacer(modifier = Modifier.height(10.dp))
     TextHasil(
-        namanya = cobaViewModel.namaUsr,
-        teleponnya = cobaViewModel.noTlp,
         jenisnya = cobaViewModel.jenisKL,
         statusnya = cobaViewModel.status,
+        alamatnya = cobaViewModel.alamat,
+        emailnya = cobaViewModel.email,
+
+
     )
 
 }
@@ -250,7 +252,7 @@ fun SelectStatus(
 }
 
 @Composable
-fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, statusnya: String){
+fun TextHasil(jenisnya: String, statusnya: String, alamatnya: String, emailnya: String){
     ElevatedCard (
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -258,16 +260,16 @@ fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, statusnya: 
         modifier = Modifier
             .fillMaxWidth()
     ){
-        Text(text = "Nama : " + namanya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp))
-        Text(text = "Telepon : " + teleponnya,
-            modifier = Modifier
-                .padding(horizontal = 10.dp, vertical = 5.dp))
         Text(text = "Jenis Kelamin : " + jenisnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
         Text(text = "Status : " + statusnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(text = "Alamat : " + alamatnya,
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 5.dp))
+        Text(text = "Email" + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
     }
