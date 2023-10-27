@@ -168,6 +168,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         namanya = cobaViewModel.namaUsr,
         teleponnya = cobaViewModel.noTlp,
         jenisnya = cobaViewModel.jenisKL,
+        statusnya = cobaViewModel.status,
     )
 
 }
@@ -233,7 +234,7 @@ fun SelectStatus(
 }
 
 @Composable
-fun TextHasil(namanya: String, teleponnya: String, jenisnya: String){
+fun TextHasil(namanya: String, teleponnya: String, jenisnya: String, statusnya: String){
     ElevatedCard (
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
