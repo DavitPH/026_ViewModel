@@ -34,7 +34,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -43,6 +45,7 @@ import com.example.a026_viewmodel.Data.DataSource.jenis
 import com.example.a026_viewmodel.ui.theme._026_ViewModelTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.a026_viewmodel.ui.theme.CobaViewModel
+import java.time.temporal.JulianFields
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,9 +74,16 @@ fun TampilLaypout(modifier: Modifier = Modifier){
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(20.dp)
         ){
+            Judul()
+            Spacer(modifier = Modifier.padding(10.dp))
             TampilForm()
         }
     }
+}
+
+@Composable
+fun Judul(){
+    Text(text = "Create Your Account", fontSize = 20.sp, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
