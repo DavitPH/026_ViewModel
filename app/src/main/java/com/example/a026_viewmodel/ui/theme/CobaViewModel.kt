@@ -31,18 +31,22 @@ class CobaViewModel : ViewModel(){
     private val _uiStatus = MutableStateFlow(DataForm())
     val uiStatus: StateFlow<DataForm> = _uiStatus.asStateFlow()
 
-    fun InsertData(namanya:String,teleponnya:String, jenisnya:String, statusnya:String){
+    fun InsertData(namanya:String,teleponnya:String, jenisnya:String, statusnya:String,
+                   alamatnya: String, emailnya: String, ){
         namaUsr = namanya;
         noTlp = teleponnya;
         jenisKL = jenisnya;
         status = statusnya;
+        alamat = alamatnya;
+        email = emailnya
+
     }
 
     fun setJK(plhJK:String){
         _uiState.update{currentState -> currentState.copy (sex = plhJK)}
     }
     fun setST(plhST:String){
-        _uiStatus.update{currentState -> currentState.copy (sex = plhST)}
+        _uiStatus.update{currentState2 -> currentState2.copy (status = plhST)}
     }
 
 

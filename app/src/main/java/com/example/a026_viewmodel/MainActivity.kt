@@ -114,8 +114,12 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
 
 
     val context = LocalContext.current
+    val context2 = LocalContext.current
     val dataForm: DataForm
+
     val uiState by cobaViewModel.uiState.collectAsState()
+    val uiStatus by cobaViewModel.uiStatus.collectAsState()
+
     dataForm = uiState
 
     OutlinedTextField(value = textNama,
@@ -135,7 +139,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         modifier = Modifier.fillMaxWidth(),
         label = { Text(text = "Telepon") },
         onValueChange = {
-            textNama = it
+            textTlp = it
         }
     )
     OutlinedTextField(value = textEmail,
@@ -151,7 +155,7 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         options= jenis.map {id-> context.resources.getString(id) },
         onSelectionChanged = { cobaViewModel.setJK(it) })
 
-    SelectStatus(options= status.map {id-> context.resources.getString(id) },
+    SelectStatus(options= status.map {id-> context2.resources.getString(id) },
         onSelectionChanged = { cobaViewModel.setST(it) }
     )
 
@@ -169,7 +173,9 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     Button(
         modifier= Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.InsertData(textNama, textTlp, dataForm.sex, dataForm.status)
+            cobaViewModel.InsertData(textNama, textTlp,
+                dataForm.sex, dataForm.status,
+                textAlamat, textEmail)
         }
     ) {
         Text(
@@ -184,8 +190,6 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
         statusnya = cobaViewModel.status,
         alamatnya = cobaViewModel.alamat,
         emailnya = cobaViewModel.email,
-
-
     )
 
 }
@@ -197,7 +201,7 @@ fun SelectJK(
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
     Text(text = "Jenis Kelamin: ")
-    Row (modifier = Modifier.padding(16.dp)){
+    Row (modifier = Modifier.padding(1.dp)){
         options.forEach{item ->
             Row(
                 modifier= Modifier.selectable(
@@ -225,22 +229,22 @@ fun SelectStatus(
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {}
 ){
-    var selectedValue by rememberSaveable { mutableStateOf("") }
+    var selectedValue2 by rememberSaveable { mutableStateOf("") }
     Text(text = "Status: ")
-    Row (modifier = Modifier.padding(16.dp)){
+    Row (modifier = Modifier.padding(1.dp)){
         options.forEach{item ->
             Row(
                 modifier= Modifier.selectable(
-                    selected= selectedValue == item,
-                    onClick = {selectedValue = item
+                    selected= selectedValue2 == item,
+                    onClick = {selectedValue2 = item
                         onSelectionChanged(item)
                     }
                 ),
                 verticalAlignment = Alignment.CenterVertically
             ){
-                RadioButton(selected= selectedValue == item,
+                RadioButton(selected= selectedValue2 == item,
                     onClick ={
-                        selectedValue = item
+                        selectedValue2 = item
                         onSelectionChanged(item)
                     }
                 )
@@ -268,7 +272,7 @@ fun TextHasil(jenisnya: String, statusnya: String, alamatnya: String, emailnya: 
         Text(text = "Alamat : " + alamatnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
-        Text(text = "Email" + emailnya,
+        Text(text = "Email : " + emailnya,
             modifier = Modifier
                 .padding(horizontal = 10.dp, vertical = 5.dp))
     }
