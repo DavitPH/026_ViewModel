@@ -174,7 +174,7 @@ fun SelectJK(
     onSelectionChanged: (String) -> Unit = {}
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
-
+    Text(text = "Jenis Kelamin: ")
     Column (modifier = Modifier.padding(16.dp)){
         options.forEach{item ->
             Row(
