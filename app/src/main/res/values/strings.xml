@@ -3,4 +3,6 @@
     <string name="submit">submit</string>
     <string name="Pria">Pria</string>
     <string name="Wanita">Wanita</string>
+    <string name="Belum_Menikah">Belum_Menikah</string>
+    <string name="Menikah">Menikah</string>
 </resources>

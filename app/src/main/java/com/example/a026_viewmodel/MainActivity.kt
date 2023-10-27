@@ -47,6 +47,7 @@ import com.example.a026_viewmodel.Data.DataForm
 import com.example.a026_viewmodel.Data.DataSource.jenis
 import com.example.a026_viewmodel.ui.theme._026_ViewModelTheme
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.a026_viewmodel.Data.DataSource.status
 import com.example.a026_viewmodel.ui.theme.CobaViewModel
 import java.time.temporal.JulianFields
 
@@ -148,10 +149,14 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     SelectJK(
         options= jenis.map {id-> context.resources.getString(id) },
         onSelectionChanged = { cobaViewModel.setJK(it) })
+
+    SelectStatus(options= status.map {id-> context.resources.getString(id) },
+        onSelectionChanged = { cobaViewModel.setST(it) }
+    )
     Button(
         modifier= Modifier.fillMaxWidth(),
         onClick = {
-            cobaViewModel.InsertData(textNama, textTlp, dataForm.sex)
+            cobaViewModel.InsertData(textNama, textTlp, dataForm.sex, dataForm.status)
         }
     ) {
         Text(
@@ -175,6 +180,36 @@ fun SelectJK(
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
     Text(text = "Jenis Kelamin: ")
+    Column (modifier = Modifier.padding(16.dp)){
+        options.forEach{item ->
+            Row(
+                modifier= Modifier.selectable(
+                    selected= selectedValue == item,
+                    onClick = {selectedValue = item
+                        onSelectionChanged(item)
+                    }
+                ),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                RadioButton(selected= selectedValue == item,
+                    onClick ={
+                        selectedValue = item
+                        onSelectionChanged(item)
+                    }
+                )
+                Text(item)
+            }
+        }
+    }
+}
+
+@Composable
+fun SelectStatus(
+    options: List<String>,
+    onSelectionChanged: (String) -> Unit = {}
+){
+    var selectedValue by rememberSaveable { mutableStateOf("") }
+    Text(text = "Status: ")
     Column (modifier = Modifier.padding(16.dp)){
         options.forEach{item ->
             Row(
