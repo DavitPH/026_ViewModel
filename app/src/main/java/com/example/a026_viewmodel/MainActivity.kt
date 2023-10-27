@@ -110,6 +110,8 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
     var textNama by remember { mutableStateOf("") }
     var textTlp by remember { mutableStateOf("") }
     var textEmail by remember { mutableStateOf("") }
+    var textAlamat by remember { mutableStateOf("") }
+
 
     val context = LocalContext.current
     val dataForm: DataForm
@@ -136,13 +138,13 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             textNama = it
         }
     )
-    OutlinedTextField(value = textNama,
+    OutlinedTextField(value = textEmail,
         singleLine = true,
         shape = MaterialTheme.shapes.large,
         modifier = Modifier.fillMaxWidth(),
         label = { Text(text = "Email") },
         onValueChange = {
-            textNama = it
+            textEmail = it
         }
     )
     SelectJK(
@@ -163,8 +165,21 @@ fun TampilForm(cobaViewModel: CobaViewModel = viewModel()){
             fontSize = 16.sp
         )
     }
+    Spacer(modifier = Modifier.height(10.dp))
 
-    Spacer(modifier = Modifier.height(20.dp))
+    Column (){
+        OutlinedTextField(value = textAlamat,
+            singleLine = true,
+            shape = MaterialTheme.shapes.large,
+            modifier = Modifier.fillMaxWidth(),
+            label = { Text(text = "Alamat") },
+            onValueChange = {
+                textAlamat = it
+            }
+        )
+    }
+    
+    Spacer(modifier = Modifier.height(10.dp))
     TextHasil(
         namanya = cobaViewModel.namaUsr,
         teleponnya = cobaViewModel.noTlp,
