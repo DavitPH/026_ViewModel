@@ -79,7 +79,6 @@ fun TampilLaypout(modifier: Modifier = Modifier){
             modifier = Modifier.padding(20.dp)
         ){
             Register()
-            Spacer(modifier = Modifier.padding(5.dp))
             Judul()
             Spacer(modifier = Modifier.padding(10.dp))
             TampilForm()
@@ -180,7 +179,7 @@ fun SelectJK(
 ) {
     var selectedValue by rememberSaveable { mutableStateOf("") }
     Text(text = "Jenis Kelamin: ")
-    Column (modifier = Modifier.padding(16.dp)){
+    Row (modifier = Modifier.padding(16.dp)){
         options.forEach{item ->
             Row(
                 modifier= Modifier.selectable(
@@ -210,7 +209,7 @@ fun SelectStatus(
 ){
     var selectedValue by rememberSaveable { mutableStateOf("") }
     Text(text = "Status: ")
-    Column (modifier = Modifier.padding(16.dp)){
+    Row (modifier = Modifier.padding(16.dp)){
         options.forEach{item ->
             Row(
                 modifier= Modifier.selectable(
